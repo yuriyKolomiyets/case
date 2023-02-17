@@ -18,7 +18,6 @@ public class TroopServiceImpl {
     private static final int TROOPS_TYPES_SIZE = 3;
 
 
-
     public List<Troop> get(Long amount) {
 
         //creating ret List of troops
