@@ -8,4 +8,5 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 public class Spearmen extends Troop {
+    private final String troopType = "Spearmen";
 }

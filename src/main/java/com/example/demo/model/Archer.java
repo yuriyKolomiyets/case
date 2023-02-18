@@ -7,4 +7,6 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 public class Archer extends Troop {
+
+    private final String troopType = "Archer";
 }

@@ -7,4 +7,5 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 public class Swordsmen extends Troop {
+    private final String troopType = "Swordsmen";
 }
