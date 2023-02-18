@@ -23,7 +23,7 @@ public class TroopController {
 
     @GetMapping(value = "/troops/amount/{amount}")
     public List<Troop> getTroop(@PathVariable("amount")
-                                    @Min(TROOPS_TYPES_SIZE) Integer amount) {
+                                @Min(TROOPS_TYPES_SIZE) @Valid Integer amount) {
 
         return troopService.get(amount);
     }
