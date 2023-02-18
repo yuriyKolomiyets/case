@@ -4,7 +4,9 @@ import com.example.demo.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -18,15 +20,13 @@ public class TroopServiceImpl {
 
         HashMap<Troop, Integer> armyMap = new HashMap<>();
         Army retArmy = new Army(armyMap);
-        Integer[] troopsAmount = troopsAmountGenerate(amount);
+        List<Integer> troopsAmount = troopsAmountGenerate(amount);
 
         for (int i = 0; i < typesAmount; i++) {
-            armyMap.put(new Troop(Type.values()[i]), troopsAmount[i]);
+            armyMap.put(new Troop(Type.values()[i]), troopsAmount.get(i));
 
         }
-
         return retArmy;
-
     }
 
     /**
@@ -44,11 +44,11 @@ public class TroopServiceImpl {
      * maxAmountPerType.
      */
 
-    private Integer[] troopsAmountGenerate(Integer amount) {
+    private List<Integer> troopsAmountGenerate(Integer amount) {
 
         int maxAmountPerType = (amount + typesAmount - 1) / typesAmount;
 
-        Integer[] troopsAmount = new Integer[typesAmount];
+        List<Integer> troopsAmount = new ArrayList<>();
 
         int totalAmount = 0;
 
@@ -57,10 +57,10 @@ public class TroopServiceImpl {
             if (i < typesAmount - 1) {
                 int maxAmount = Math.min(maxAmountPerType, amount - totalAmount - (typesAmount - i - 1));
                 int troopAmount = random.nextInt(maxAmount) + 1;
-                troopsAmount[i] = troopAmount;
+                troopsAmount.add(troopAmount);
                 totalAmount += troopAmount;
             } else {
-                troopsAmount[i] = amount - totalAmount;
+                troopsAmount.add(amount - totalAmount);
             }
         }
         return troopsAmount;
