@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface TroopService {
 
-    List<Troop> get(Long amount);
+    List<Troop> get(Integer amount);
 }

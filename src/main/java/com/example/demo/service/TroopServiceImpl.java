@@ -18,7 +18,7 @@ public class TroopServiceImpl {
     private static final int TROOPS_TYPES_SIZE = 3;
 
 
-    public List<Troop> get(Long amount) {
+    public List<Troop> get(Integer amount) {
 
         //creating ret List of troops
 
@@ -48,7 +48,7 @@ public class TroopServiceImpl {
         return retTroop;
     }
 
-    private Integer[] troopsAmountGenerate(Long amount) {
+    private Integer[] troopsAmountGenerate(Integer amount) {
 
         Random random = new Random();
         Integer[] troopsAmount = new Integer[TROOPS_TYPES_SIZE];
@@ -57,13 +57,18 @@ public class TroopServiceImpl {
         for (int i = 0; i < TROOPS_TYPES_SIZE; i++) {
 
             if (i < TROOPS_TYPES_SIZE - 1) {
-                int troopAmount = random.nextInt(amount.intValue() - totalAmountCache) + 1;
-                totalAmountCache += troopAmount;
-                troopsAmount[i] = troopAmount;
+                if (amount == TROOPS_TYPES_SIZE) {
+                    troopsAmount[i] = 1;
+                    totalAmountCache += 1;
+                } else {
+                    int troopAmount = random.nextInt(amount - totalAmountCache - TROOPS_TYPES_SIZE + i) + 1;
+                    totalAmountCache += troopAmount;
+                    troopsAmount[i] = troopAmount;
+                }
             } else {
 
                 //rest for the last one in array
-                troopsAmount[i] = amount.intValue() - totalAmountCache;
+                troopsAmount[i] = amount - totalAmountCache;
             }
         }
         return troopsAmount;
