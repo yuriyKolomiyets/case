@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.model.*;
+import com.example.demo.model.Army;
+import com.example.demo.model.Troop;
+import com.example.demo.model.Type;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
