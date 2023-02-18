@@ -14,7 +14,7 @@ import java.util.Random;
 public class TroopServiceImpl {
 
     private final Random random = new Random();
-    int typesAmount = Type.values().length;
+    private final int typesAmount = Type.values().length;
 
     public Army get(Integer amount) {
 

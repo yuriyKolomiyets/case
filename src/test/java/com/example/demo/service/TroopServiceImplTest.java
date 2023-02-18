@@ -8,7 +8,6 @@ import com.example.demo.model.Troop;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
