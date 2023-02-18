@@ -1,9 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Troop;
-import java.util.List;
+import com.example.demo.model.Army;
 
 public interface TroopService {
 
-    List<Troop> get(Integer amount);
+    Army get(Integer amount);
 }

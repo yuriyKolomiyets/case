@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Map;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
-public class Troop {
-    private Type troopType;
+public class Army {
+    private Map<Troop, Integer> army;
 }

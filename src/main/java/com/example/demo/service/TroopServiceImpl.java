@@ -1,13 +1,11 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Archer;
-import com.example.demo.model.Spearmen;
-import com.example.demo.model.Swordsmen;
-import com.example.demo.model.Troop;
+import com.example.demo.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -15,51 +13,44 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class TroopServiceImpl {
 
-    private static final int TROOPS_TYPES_SIZE = 3;
     private final Random random = new Random();
+    int typesAmount = Type.values().length;
 
 
-    public List<Troop> get(Integer amount) {
 
-        List<Troop> retTroop = new ArrayList<>();
+    public Army get(Integer amount) {
 
-        for (int i = 0; i < TROOPS_TYPES_SIZE; i++) {
-            Troop troop = null;
-            switch (i) {
-                case 0:
-                    troop = new Spearmen();
-                    break;
-                case 1:
-                    troop = new Swordsmen();
-                    break;
-                case 2:
-                    troop = new Archer();
-                    break;
-            }
-            retTroop.add(troop);
-        }
-
+        HashMap<Troop, Integer> armyMap = new HashMap<>();
+        Army retArmy = new Army(armyMap);
         Integer[] troopsAmount = troopsAmountGenerate(amount);
 
-        retTroop.get(0).setAmount(troopsAmount[0]);
-        retTroop.get(1).setAmount(troopsAmount[1]);
-        retTroop.get(2).setAmount(troopsAmount[2]);
+        for (int i = 0; i < typesAmount; i++) {
+            armyMap.put(new Troop(Type.values()[i]),troopsAmount[i]);
 
-        return retTroop;
+        }
+
+        return retArmy;
 
     }
 
+    /**
+     *
+     * @param amount
+     * @return Array of amounts of troops for each type
+     */
+
     private Integer[] troopsAmountGenerate(Integer amount) {
 
-        int maxAmountPerType = (amount + TROOPS_TYPES_SIZE - 1) / TROOPS_TYPES_SIZE;
+        int maxAmountPerType = (amount + typesAmount - 1) / typesAmount;
 
-        Integer[] troopsAmount = new Integer[TROOPS_TYPES_SIZE];
+        Integer[] troopsAmount = new Integer[typesAmount];
+
         int totalAmount = 0;
 
-        for (int i = 0; i < TROOPS_TYPES_SIZE; i++) {
+        for (int i = 0; i < typesAmount; i++) {
 
-            if (i < TROOPS_TYPES_SIZE - 1) {
-                int maxAmount = Math.min(maxAmountPerType, amount - totalAmount - (TROOPS_TYPES_SIZE - i - 1));
+            if (i < typesAmount - 1) {
+                int maxAmount = Math.min(maxAmountPerType, amount - totalAmount - (typesAmount - i - 1));
                 int troopAmount = random.nextInt(maxAmount) + 1;
                 troopsAmount[i] = troopAmount;
                 totalAmount += troopAmount;
