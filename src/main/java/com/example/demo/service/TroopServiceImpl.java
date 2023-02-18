@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Random;
 
@@ -13,8 +14,6 @@ public class TroopServiceImpl {
     private final Random random = new Random();
     int typesAmount = Type.values().length;
 
-
-
     public Army get(Integer amount) {
 
         HashMap<Troop, Integer> armyMap = new HashMap<>();
@@ -22,7 +21,7 @@ public class TroopServiceImpl {
         Integer[] troopsAmount = troopsAmountGenerate(amount);
 
         for (int i = 0; i < typesAmount; i++) {
-            armyMap.put(new Troop(Type.values()[i]),troopsAmount[i]);
+            armyMap.put(new Troop(Type.values()[i]), troopsAmount[i]);
 
         }
 
@@ -32,9 +31,10 @@ public class TroopServiceImpl {
 
     /**
      * This method generates an array of troop amounts for a given total amount and a specified number of troop types.
+     *
      * @param amount represents the total number of troops to generate
      * @return Array of integers representing the number of troops for each troop type
-     *
+     * <p>
      * The first step to calculate the maximum number of troops per type, which is maxAmountPerType.
      * Next, create an array of typesAmount integers called troopsAmount to store the final number of troops for
      * each type.
