@@ -23,7 +23,8 @@ public class TroopController {
 
 
     @GetMapping(value = "/troops/amount/{amount}")
-    public List<Troop> getTroop(@PathVariable("amount") @Min(value = 3, message = "Amount must be more than 3") Integer amount) {
+    public List<Troop> getTroop(@PathVariable("amount") @Min(value = TROOPS_TYPES_SIZE,
+            message = "Amount must be more than 3") Integer amount) {
         log.info("Validating amount: {}", amount);
         return troopService.get(amount);
     }
